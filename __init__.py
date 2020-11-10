@@ -1,8 +1,8 @@
 from flask import Flask
 
-from .backend.config import DefaultConfig # Konfigurasi
-from .backend.extensions import * # Ekstensi, misalnya SQLAlchemy()
-from .backend.models import Pengguna # Model
+from .backend.config import DefaultConfig   # Konfigurasi
+from .backend.extensions import *           # Ekstensi, misalnya SQLAlchemy()
+from .backend.models import Pengguna        # Model
 
 def create_app(conf=DefaultConfig):
     app = Flask(__name__)
