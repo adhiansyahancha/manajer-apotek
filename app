@@ -1,0 +1,1 @@
+/home/adhiansyah/Development/Python/ManajerApotek/app
