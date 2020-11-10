@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id" translate="no">
+
+<head>
+
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Adhiansyah Ancha">
+    <title>Apotek Asta Medika</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/site.webmanifest">
+    <link rel="mask-icon" href="/static/img/safari-pinned-tab.svg" color="#ff0000">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+<body>
+    {% include 'dasbor/modals.html' %}
+    <header>
+        <nav class="navbar navbar navbar-dark fixed-top sticky-top bg-dark">
+            <a class="navbar-brand" href="/">
+                <img src="/static/img/android-chrome-192x192.png" alt="192px favicon for Chrome"
+                width="30" height="30" class="d-inline-block align-top">
+                Apotek Asta Medika
+            </a>
+            <div>
+                <div class="btn-group">
+                    <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                        <span class="d-inline-block">
+                            <img src="{{ current_user.foto_profil() }}" class="rounded" width="24" height="24" 
+                            alt="Foto profil {{ current_user.nama }}">
+                            {{ current_user.nama }}
+                        </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" data-toggle="modal" 
+                        data-target="#modal_profilpengguna" href="#">
+                            Tentang
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/keluar/">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dmo" data-toggle="tab">Data Master Obat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#to" data-toggle="tab">Transaksi Obat</a>
+                    </li>
+                    {% if form_cari.kotak_pencarian.data %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cari" data-toggle="tab">Hasil pencarian</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="dmo">
+                        {% include 'dasbor/stokobat.html' %}
+                    </div>
+                    <div class="tab-pane fade" id="to">
+                        {% include 'dasbor/transaksiobat.html' %}
+                    </div>
+                    <div class="tab-pane fade" id="cari">
+                        {% include 'dasbor/pencarian.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center justify-content-center">
+        <br>
+        <p>Pengembang: <a href="mailto:adhiansyaaah@outlook.co.id">Adhiansyah Ancha</a></p>
+    </footer>
+
+    <!-- Agar Bootstrap JS bisa bekerja, pastikan jQuery ditaruh paling atas dalam blok skrip ini. 
+        Berkas "misc.js" berisi tambahan JS untuk aplikasi web ini. -->
+
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.js"></script>
+    <script src="/static/js/misc.js"></script>
+</body>
+
+</html>

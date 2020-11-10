@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Adhiansyah Ancha">
+    <title>Masuk ke dasbor</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+
+<body>
+    {% include 'login/error.html' %}
+    <div class="container col-md-4 mt-md-4 pt-5">
+        <h1 class="text-center">Masuk</h1>
+        <form action="" method="POST" novalidate>
+            {{form.hidden_tag()}}
+            <div class="form-group">
+                {{form.surel.label}}
+                {{form.surel(class_="form-control")}}
+            </div>
+            <div class="form-group">
+                {{form.kata_sandi.label}}
+                {{form.kata_sandi(class_="form-control")}}
+                <small id="emailHelp" class="form-text text-muted">Pastikan jangan sampai lupa kata sandi.</small>
+            </div>
+            <div class="form-group form-check">
+                {{form.ingat_saya(class_="form-check-input")}}
+                {{form.ingat_saya.label}}
+            </div>
+            <div class="text-center">
+                {{form.submit(class_="btn btn-primary text-center")}}
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

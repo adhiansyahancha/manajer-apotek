@@ -1,0 +1,98 @@
+<div>
+    <div class="btn-group btn-group-sm justify-content-center text-center" role="group">
+        <button class="btn btn-dark" data-toggle="modal" data-target="#modal_dmo">
+            <span class="material-icons mt-2">add_box</span>
+        </button>
+        <button class="btn btn-dark" data-toggle="modal" data-target="#modal_hapusobat">
+            <span class="material-icons mt-2">delete</span>
+        </button>
+        <button class="btn btn-dark" data-toggle="modal" data-target="#modal_cari">
+            <span class="material-icons mt-2">search</span>
+      </button>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-9">
+        <table class="table table-hover table-bordered table-responsive-md">
+            <thead class="thead-dark">
+              <tr class="text-center">
+                <th>Batch</th>
+                <th>Kode</th>
+                <th>Kadaluarsa</th>
+                <th>Keterangan</th>
+                <th>Masuk</th>
+                <th>Keluar</th>
+                <th>Sisa</th>
+                <th>Pencatat</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for dmo in DataMasterObat.query.order_by(DataMasterObat.waktu_dimodifikasi.desc()).all() %}
+              <tr class="text-center">
+                <td>{{ dmo.batch }}</td>
+                <td>{{ dmo.kode }}</td>
+                <td>{{ dmo.kadaluarsa.strftime('%d %b %Y') }}</td>
+                <td>{{ dmo.keterangan }}</td>
+                <td>{{ dmo.masuk }}</td>
+                <td>{{ dmo.keluar }}</td>
+                <td>{{ dmo.sisa }}</td>
+                <td>{{ dmo.pencatat }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+      <div class="col-md-3">
+          <div class="card">
+              <div class="card-header bg-dark text-white">
+                  <b>Catatan</b>
+              </div>
+              <div class="card-body">
+                  {% with error_received = get_flashed_messages() %}
+                  {% if error_received %}
+                  {% for get_all in error_received %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{ get_all }}
+                      <button type="button" class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                      </button>
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
+                  Pukul <div class="d-inline-block" id="clock"></div> WIB
+                  <div class="dropdown-divider"></div>
+                  <h5>Perubahan Terbaru</h5>
+                  <div class="overflow-auto bg-light" style="max-width: 290px; max-height: 190px;">
+                  </div>
+                  <br>
+                  <h5>Kode Obat</h5>
+                  <div class="overflow-auto bg-light" style="max-width: 290px; max-height: 300px;">
+                    <p>
+                        Kode obat adalah sebuah pengenal khusus dan unik untuk setiap obat yang dicatat.
+                        Tujuannya untuk memudahkan operasi tabel aplikasi ini dan menghindari penyimpangan 
+                        nama kode.
+                        <br><br>
+                        Tapi ada beberapa aturan khusus dalam nemamai nama kode obat:
+                    </p>
+                    <ul>
+                        <li>Kode harus berhuruf besar semua</li>
+                        Contoh: ALLOPURINOL, CAPTOPRIL, SIMVASTATIN
+                        <li>Pisahkan dengan strip jika nama obatnya 2 kata atau lebih</li>
+                        Contoh: ENERVON-C dan YOU-C1000
+                        <li>Beri kode yang sesuai jika ada jenis pada suatu obat</li>
+                        Contoh: PANADOL-EXTRA, PANADOL-ANAK, PANADOL
+                        <li>Bisa diberi nilai angka, terutama jika punya kandungan berbeda pada suatu obat (gunakan satuan gram)</li>
+                        Contoh: BETADINE-15, BETADINE-60, BETADINE-1000
+                        <li>Minimal 3 huruf</li>
+                        Contoh: XON
+                        <li>Maksimal 3 kata (pemisahan dengan strip) dan 1 set angka</li>
+                        Contoh: AMLODIPINE-BESYLATE-NORVASC-500
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

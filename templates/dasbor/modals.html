@@ -1,0 +1,132 @@
+<!-- Modal untuk Data Master Obat -->
+<div class="modal fade" id="modal_dmo" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pencatatan stok obat</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    {{form_dmo.hidden_tag()}}
+                    <div class="form-group">
+                        {{form_dmo.batch.label}}
+                        {{form_dmo.batch(class_="form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{form_dmo.kode.label}}
+                        {{form_dmo.kode(class_="form-control", pattern="[A-Z]{3,}(-[A-Z0-9]{1,})?(-[A-Z0-9]{1,})?(-[0-9]{1,})?",
+                        placeholder="Contoh: PROTECAL-SOLID, TERMOREX-30")}}
+                    </div>
+                    <div class="form-group">
+                        {{form_dmo.kadaluarsa.label}}
+                        {{form_dmo.kadaluarsa(class_="form-control", type="date", 
+                        value="2020-09-17", min="1970-01-01", max="2061-12-31")}}
+                    </div>
+                    <div class="form-group">
+                        {{form_dmo.keterangan.label}}
+                        {{form_dmo.keterangan(class_="form-control")}}
+                    </div>
+                    <div class="form-group">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-md-4">
+                                {{form_dmo.masuk.label}}
+                                {{form_dmo.masuk(class_="form-control", type="number")}}
+                            </div>
+                            <div class="col-md-4 offset-md-2">
+                                {{form_dmo.keluar.label}}
+                                {{form_dmo.keluar(class_="form-control", type="number")}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p>{{form_dmo.submit(class_="btn btn-dark")}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal untuk menghapus data obat -->
+<div class="modal fade" id="modal_hapusobat" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Penghapusan data obat</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        {{form_hapus.pilihan_obat.label}}
+                        {{form_hapus.pilihan_obat(class_="form-control")}}
+                    </div>
+                    <div class="text-right">
+                        <p>{{form_hapus.batal(class_="btn btn-dark")}} {{form_hapus.submit(class_="btn btn-dark", 
+                            onclick="return confirm('Yakin mau menghapus data obat ini?');")}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal untuk mencari obat -->
+<div class="modal fade" id="modal_cari" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pencarian data obat</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url_for('dasbor.root')}}" method="POST" novalidate>
+                    <div class="form-group">
+                        {{form_cari.pilihan.label}}
+                        {{form_cari.pilihan(class_="form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{form_cari.kotak_pencarian.label}}<br>
+                        {{form_cari.kotak_pencarian(class_="form-control", placeholder="Masukkan pencarian disini")}}
+                    </div>
+                    <div class="text-right">
+                        <p>{{form_cari.reset(class_="btn btn-dark")}} {{form_cari.submit_cari(class_="btn btn-dark")}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal untuk menunjukkan profil pengguna -->
+<div class="modal fade" id="modal_profilpengguna" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Profil pengguna</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{current_user.foto_profil()}}" class="rounded mx-auto d-block" width="90" height="90"
+                alt="Foto profil {{current_user.nama}}">
+                <hr>
+                Namamu adalah {{current_user.nama}}<br>
+                Surel kamu adalah <a href="mailto:{{current_user.surel}}">{{current_user.surel}}</a>
+                <br><br>
+                <p class="text-center">
+                    <a href="#5f4dcc3b5aa765d61d8327deb882cf99">Minta reset kata sandi disini</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
