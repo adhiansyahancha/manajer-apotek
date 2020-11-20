@@ -7,6 +7,7 @@ from .backend.forms import FormDataMasterObat, FormCariObat, FormHapusObat
 from datetime import datetime
 
 bp = Blueprint('dasbor', __name__)
+
 @login_required
 @bp.route('/', methods=['GET', 'POST'])
 def root():
@@ -15,7 +16,7 @@ def root():
         form_cari = FormCariObat()
         form_hapus = FormHapusObat()
 
-        # Segala form pembatalan operasi
+        # Pembatalan operasi
         if form_cari.reset.data or form_hapus.batal.data:
             return redirect(url_for('dasbor.root'))
 

@@ -16,6 +16,7 @@ def create_app(conf=DefaultConfig):
     def muatkan_pengguna(id):
         return Pengguna.query.get(int(id))
 
+    # Dimana semua Blueprint didaftarkan
     with app.app_context():
         from . import login, dasbor
         app.register_blueprint(login.bp)

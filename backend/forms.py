@@ -37,7 +37,7 @@ class FormPenjualanObat(FlaskForm):
     jumlah = IntegerField('Jumlah', validators=[DataRequired()])
 
 
-# Tanpa model basisdata
+# Tanpa pasangan model
 class FormCariObat(FlaskForm):
     daftar_atribut = [(None, None), ('kode', 'Kode'), ('keterangan', 'Keterangan'), 
     ('kadaluarsa', 'Kadaluarsa'), ('pencatat', 'Pencatat')]

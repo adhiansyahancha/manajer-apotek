@@ -2,6 +2,6 @@
 Proyek aplikasi web berbasis Flask untuk manajemen obat-obatan apotek secara elektronik.
 
 ## Software yang digunakan
-* [Bootstrap 4](https://github.com/twbs/bootstrap)
-* [Flask microframework](https://github.com/pallets/flask)
+* [Flask microframework](https://flask.palletsprojects.com/en/1.1.x/)
+* [Bootstrap 4](https://getbootstrap.com/)
 * [SQLite](https://sqlite.org/index.html)
